@@ -1,6 +1,8 @@
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { Example } from "./Example";
+import FindAStore from "./FindAStore";
 
 function Header() {
   return (
@@ -22,7 +24,10 @@ function Header() {
           Gift Cards
         </Link>
       </div>
-      <div class="header--right"></div>
+      <div class="header--right">
+        <Example />
+        <FindAStore />
+      </div>
     </div>
   );
 }
