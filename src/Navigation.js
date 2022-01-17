@@ -1,11 +1,11 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import MenuLink from "./MenuLink";
+import { MenuLink } from "./MenuLink";
 import SignInButton from "./SignInButton";
 import SignUpButton from "./SignUpButton";
 import FindAStore from "./FindAStore";
-// import { useSelector } from "react-redux";
-// import { selectUser } from "./features/userSlice";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/userSlice";
 import LogoutButton from "./LogoutButton";
 
 const variants = {
@@ -35,7 +35,7 @@ const variants2 = {
 };
 
 export const Navigation = ({ toggle }) => {
-  // const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
   const [showMenuCategories, setShowMenuCategories] = React.useState(false);
 
   return (
@@ -91,15 +91,15 @@ export const Navigation = ({ toggle }) => {
           <MenuLink link="Rewards" />
           <MenuLink link="Gift Cards" />
           <motion.hr variants={variants2} />
-          <motion.div className="navigation__buttons" variants={variants2}>
-            {/* {!user ? (
+          <motion.div className="navigation--buttons" variants={variants2}>
+            {!user ? (
               <>
                 <SignInButton />
                 <SignUpButton />
               </>
             ) : (
               <LogoutButton />
-            )} */}
+            )}
           </motion.div>
           <motion.div variants={variants2}>
             <FindAStore />

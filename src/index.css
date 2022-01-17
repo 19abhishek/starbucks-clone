@@ -45,7 +45,7 @@ nav {
   z-index: 1;
 }
 
-.menuToggle__button {
+.menuToggle--button {
   outline: none;
   border: none;
   user-select: none;
@@ -103,7 +103,7 @@ a > li {
   font-weight: 600;
 }
 
-.navigation__buttons {
+.navigation--buttons {
   display: flex;
   gap: 20px;
   margin-bottom: 20px;
