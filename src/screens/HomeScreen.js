@@ -70,7 +70,7 @@ function HomeScreen() {
         <Heading heading="MORE TO DISCOVER" />
       </Fade>
       <Fade>
-        <div className="homeScreen__discover">
+        <div className="homeScreen--discover">
           <Info
             title="Order and pick up. Easy as that."
             image="https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-67828.jpg"
