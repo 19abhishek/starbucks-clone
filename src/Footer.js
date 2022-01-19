@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ContentPlaceholder } from "./ContentPlaceholder";
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const Accordion = ({
   i,
