@@ -17,6 +17,7 @@ import LoginScreen from "./screens/LoginScreen";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { logout } from "./features/userSlice";
+import SignUpScreen from "./screens/SignUpScreen";
 
 function App() {
   const user = useSelector(selectUser);
@@ -50,6 +51,9 @@ function App() {
         </Route>
         <Route exact path="/account/signin">
           {user ? <Redirect to="/menu" /> : <LoginScreen />}
+        </Route>
+        <Route exact path="/account/create">
+          {user ? <Redirect to="/menu" /> : <SignUpScreen />}
         </Route>
       </Switch>
     </Router>
