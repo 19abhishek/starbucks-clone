@@ -7,6 +7,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import FormSubmit from "./FormSubmit";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { auth } from "./firebase";
+import { login } from "./features/userSlice";
 
 function SignUpForm() {
   const {
@@ -15,8 +19,30 @@ function SignUpForm() {
     formState: { errors },
   } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const onSubmit = () => {};
+  const onSubmit = ({ fName, lName, email, password }) => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        userAuth.user
+          .updateProfile({
+            displayName: fName,
+          })
+          .then(() => {
+            dispatch(
+              login({
+                email: userAuth.user.email,
+                uid: userAuth.user.uid,
+                displayName: fName,
+              })
+            );
+            history.replace("/menu");
+          });
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <div className="signupForm">
