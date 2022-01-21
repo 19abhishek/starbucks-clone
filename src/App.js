@@ -11,13 +11,33 @@ import { Fade } from "react-awesome-reveal";
 import HomeScreen from "./screens/HomeScreen";
 import Header from "./Header";
 import { Footer } from "./Footer";
-import { useSelector } from "react-redux";
-import { selectUser } from "./features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { login, selectUser } from "./features/userSlice";
 import LoginScreen from "./screens/LoginScreen";
+import { useEffect } from "react";
+import { auth } from "./firebase";
+import { logout } from "./features/userSlice";
 
 function App() {
   const user = useSelector(selectUser);
-  console.log(user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        dispatch(
+          login({
+            email: userAuth.email,
+            uid: userAuth.uid,
+            displayName: userAuth.displayName,
+          })
+        );
+      } else {
+        dispatch(logout());
+      }
+    });
+  }, [dispatch]);
+
   return (
     <Router>
       <Switch>

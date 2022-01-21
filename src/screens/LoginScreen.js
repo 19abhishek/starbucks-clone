@@ -9,15 +9,32 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import FormSubmit from "../FormSubmit";
 import FooterSecondary from "../FooterSecondary";
+import { auth } from "../firebase";
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 
 function LoginScreen() {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
-  const onSubmit = ({ email, password }) => console.log(email);
+  const onSubmit = ({ email, password }) => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        dispatch(
+          login({
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            displayName: userAuth.user.displayName,
+          })
+        );
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <div className="loginScreen">
@@ -32,9 +49,9 @@ function LoginScreen() {
           <h1>Sign in or create an account 🌟</h1>
         </div>
       </div>
-      <div class="loginScreen__right">
+      <div className="loginScreen__right">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div class="loginScreen__inputContainer">
+          <div className="loginScreen__inputContainer">
             <TextField
               label="Email"
               {...register("email", { required: true })}
@@ -57,7 +74,7 @@ function LoginScreen() {
               </div>
             )}
           </div>
-          <div class="loginScreen__inputContainer">
+          <div className="loginScreen__inputContainer">
             <TextField
               label="Password"
               {...register("password", { required: true })}
