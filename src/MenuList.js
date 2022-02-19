@@ -10,8 +10,8 @@ function MenuList() {
         <h4>Drinks</h4>
         <div className="menuList__items">
           {menuList.map((menuListCategory) =>
-            menuListCategory.drinks.map((menuListItem) => (
-              <Link>{menuListItem.type}</Link>
+            menuListCategory.drinks.map((menuListItem, idx) => (
+              <Link key={idx}>{menuListItem.type}</Link>
             ))
           )}
         </div>
@@ -20,8 +20,8 @@ function MenuList() {
         <h4>Food</h4>
         <div className="menuList__items">
           {menuList.map((menuListCategory) =>
-            menuListCategory.food.map((menuListItem) => (
-              <Link>{menuListItem.type}</Link>
+            menuListCategory.food.map((menuListItem, idx) => (
+              <Link key={idx}>{menuListItem.type}</Link>
             ))
           )}
         </div>
@@ -30,8 +30,8 @@ function MenuList() {
         <h4>At Home Coffee</h4>
         <div className="menuList__items">
           {menuList.map((menuListCategory) =>
-            menuListCategory.atHomeCoffee.map((menuListItem) => (
-              <Link>{menuListItem.type}</Link>
+            menuListCategory.atHomeCoffee.map((menuListItem, idx) => (
+              <Link key={idx}>{menuListItem.type}</Link>
             ))
           )}
         </div>
@@ -40,8 +40,8 @@ function MenuList() {
         <h4>Merchandise</h4>
         <div className="menuList__items">
           {menuList.map((menuListCategory) =>
-            menuListCategory.merchandise.map((menuListItem) => (
-              <Link>{menuListItem.type}</Link>
+            menuListCategory.merchandise.map((menuListItem, idx) => (
+              <Link key={idx}>{menuListItem.type}</Link>
             ))
           )}
         </div>
